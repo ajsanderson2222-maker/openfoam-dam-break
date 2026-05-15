@@ -8,48 +8,43 @@
 FoamFile
 {
     format      ascii;
-    class       polyBoundaryMesh;
-    location    "constant/polyMesh";
-    object      boundary;
+    class       surfaceVectorField;
+    location    "0";
+    object      Uf;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-5
-(
+dimensions      [0 1 -1 0 0 0 0];
+
+internalField   uniform (0 0 0);
+
+boundaryField
+{
     leftWall
     {
-        type            wall;
-        inGroups        List<word> 1(wall);
-        nFaces          50;
-        startFace       4432;
+        type            fixedValue;
+        value           uniform (0 0 0);
     }
     rightWall
     {
-        type            wall;
-        inGroups        List<word> 1(wall);
-        nFaces          50;
-        startFace       4482;
+        type            fixedValue;
+        value           uniform (0 0 0);
     }
     lowerWall
     {
-        type            wall;
-        inGroups        List<word> 1(wall);
-        nFaces          62;
-        startFace       4532;
+        type            fixedValue;
+        value           uniform (0 0 0);
     }
     atmosphere
     {
-        type            patch;
-        nFaces          46;
-        startFace       4594;
+        type            calculated;
+        value           uniform (0 0 0);
     }
     defaultFaces
     {
         type            symmetry;
-        inGroups        List<word> 1(symmetry);
-        nFaces          4536;
-        startFace       4640;
+        value           uniform (0 0 0);
     }
-)
+}
 
 // ************************************************************************* //

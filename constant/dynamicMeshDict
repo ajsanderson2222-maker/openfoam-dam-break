@@ -1,0 +1,45 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  13
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      dynamicMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+topoChanger
+{
+    type            refiner;
+    libs            ("libfvMeshTopoChangers.so");
+
+    mover           none;
+
+    // Refine every N time steps
+    refineInterval  5;
+
+    // Refine where alpha.water is between these limits (i.e. the interface)
+    field           alpha.water;
+    lowerRefineLevel 0.001;
+    upperRefineLevel 0.999;
+
+    // Buffer layers around refined region (ensures 2:1 transition)
+    nBufferLayers   2;
+
+    // Maximum refinement levels (2 = 4x local linear refinement vs background)
+    maxRefinement   2;
+
+    // Safety cap on total cell count
+    maxCells        500000;
+
+    // Write refinement level field for visualisation
+    dumpLevel       true;
+}
+
+// ************************************************************************* //

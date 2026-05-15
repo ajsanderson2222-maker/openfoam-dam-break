@@ -1,14 +1,13 @@
 # OpenFOAM time directories
 [0-9]*/
-[0-9].[0-9]*/
-!0/
-
+![0]/
+# Processor directories
 processor*/
-VTK/
-postProcessing/
-dynamicCode/
-.venv/
-.claude/
+# Logs and VTK
 log.*
-*.log
-.DS_Store
+VTK/
+# Large outputs
+results/*.mp4
+# Misc
+constant/polyMesh/cellProc
+postProcessing/
