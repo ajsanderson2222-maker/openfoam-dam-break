@@ -1,0 +1,55 @@
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    object      functions;
+}
+
+// Residuals
+#includeFunc residuals(name=residuals, p_rgh, U, alpha.water)
+
+// Volume of water — conservation check
+waterVolume
+{
+    type            volFieldValue;
+    libs            ("libfieldFunctionObjects.so");
+    writeControl    timeStep;
+    writeInterval   1;
+    operation       volIntegrate;
+    fields          (alpha.water);
+    regionType      cellZone;
+    cellZone        all;
+    writeFields     no;
+    log             yes;
+}
+
+// Alpha field along the floor (y ~ 0) to find wave front
+floorLine
+{
+    type            sets;
+    libs            ("libsampling.so");
+    writeControl    adjustableRunTime;
+    writeInterval   0.025;
+    interpolationScheme cellPoint;
+    setFormat       raw;
+    sets
+    {
+        floor
+        {
+            type        lineUniform;
+            axis        x;
+            start       (0.0   0.001 0.05);
+            end         (0.584 0.001 0.05);
+            nPoints     584;
+        }
+        leftColumn
+        {
+            type        lineUniform;
+            axis        y;
+            start       (0.001 0.0   0.05);
+            end         (0.001 0.584 0.05);
+            nPoints     584;
+        }
+    }
+    fields (alpha.water U p_rgh);
+}
