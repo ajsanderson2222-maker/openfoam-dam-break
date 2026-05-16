@@ -97,7 +97,7 @@ Alpha field (water volume fraction) at t = 0.25 s, 0.5 s, 1.0 s, and 2.0 s. The 
 **Adaptive AMR**
 ![Volume Adaptive](results/volume_adaptive.png)
 
-Water volume (area-integrated on the 2D slice) remains within ±1% throughout all three simulations, confirming numerical conservation of the VOF scheme.
+Water volume is area-integrated on a 2D mid-plane slice. Peak errors reach ~2–3% transiently as the interface sweeps across coarse cells, then recover as the flow settles. This is consistent with expected VOF behaviour on coarse and adaptive meshes; the fine mesh shows lower peak errors due to better-resolved interface geometry. The MULES scheme is globally conservative — the apparent drift reflects interpolation error in the post-processing, not a loss of mass in the solver.
 
 ## Running the Cases
 
