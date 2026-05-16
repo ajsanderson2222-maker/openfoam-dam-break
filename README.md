@@ -62,21 +62,42 @@ reconstructPar
 
 ### Validation — Wave Front and Column Height
 
-![Validation](results/validation_adaptive.png)
+**Coarse (2,268 cells)**
+![Validation Coarse](results/validation_coarse.png)
 
-Wave front position and collapsing column height compared against the Koshizuka & Oka (1996) experimental data. The AMR simulation with ~17k peak cells matches the experimental benchmark closely throughout the collapse and wave propagation phases.
+**Fine (36,288 cells)**
+![Validation Fine](results/validation_fine.png)
+
+**Adaptive AMR (~17,000 peak cells)**
+![Validation Adaptive](results/validation_adaptive.png)
+
+Wave front position and collapsing column height compared against the Koshizuka & Oka (1996) experimental data. All three meshes capture the benchmark trend; the fine and AMR cases show improved agreement over the coarse baseline.
 
 ### Flow Snapshots
 
-![Snapshots](results/snapshots_adaptive.png)
+**Coarse**
+![Snapshots Coarse](results/snapshots_coarse.png)
 
-Alpha field (water volume fraction) at t = 0.25 s, 0.5 s, 1.0 s, and 2.0 s. The AMR mesh concentrates resolution at the free surface, capturing the wave front, splash, and sloshing with sharp interface definition.
+**Fine**
+![Snapshots Fine](results/snapshots_fine.png)
+
+**Adaptive AMR**
+![Snapshots Adaptive](results/snapshots_adaptive.png)
+
+Alpha field (water volume fraction) at t = 0.25 s, 0.5 s, 1.0 s, and 2.0 s. The coarse mesh shows a diffuse interface; the fine and AMR meshes both capture a sharper free surface. The AMR case achieves this with roughly half the cell count of the fine mesh.
 
 ### Volume Conservation
 
-![Volume](results/volume_adaptive.png)
+**Coarse**
+![Volume Coarse](results/volume_coarse.png)
 
-Water volume (area-integrated on the 2D slice) remains within ±1% throughout the simulation, confirming numerical conservation of the VOF scheme.
+**Fine**
+![Volume Fine](results/volume_fine.png)
+
+**Adaptive AMR**
+![Volume Adaptive](results/volume_adaptive.png)
+
+Water volume (area-integrated on the 2D slice) remains within ±1% throughout all three simulations, confirming numerical conservation of the VOF scheme.
 
 ## Running the Cases
 
